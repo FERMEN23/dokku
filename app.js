@@ -6,8 +6,12 @@ import path from 'path';
 const app = express();
 const mongoose = require('mongoose');
 
-const query =
-  "mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb";
+const query ="mongodb://public-database:599933f56cdfa4f482f3475c5c15389b" +
+"@127.0.0.1:20017/public_database?" +
+"retryWrites=true&w=majority";
+
+
+//"mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb";
 
 // Mongo Connection
 const db = query;
@@ -24,6 +28,9 @@ mongoose.connect(
   function (error) {
     if (error) {
       console.log("Error!" + error);
+    }
+    else{
+      console.log("Conectado a la base de MongoDb")
     }
   }
 );
