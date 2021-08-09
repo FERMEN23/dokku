@@ -8,8 +8,7 @@ const mongoose = require('mongoose');
 
 
 // Mongo URI
-const query ="mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:27017/ProjectDB" +
-  "retryWrites=true&w=majority";
+const query ="mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:27017/ProjectDB";
 
 // Mongo Connection
 const db = query;
