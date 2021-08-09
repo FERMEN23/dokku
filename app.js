@@ -6,27 +6,39 @@ import path from 'path';
 const app = express();
 const mongoose = require('mongoose');
 
-const query ="mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB"+
-"retryWrites=true&w=majority";
 
-
-//"mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb";
+// Mongo URI
+const query =
+  "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58" +
+  "@localhost:20012/ProjectDB?" +
+  "retryWrites=true&w=majority";
 
 // Mongo Connection
 const db = query;
-//mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
+
+mongoose.connect(
+  db,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (error) {
+    if (error) {
+      console.log("Error!" + error);
+    }
+  }
+);
 
 
-const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB";
-const options = {useNewUrlParser: true, useCreateIndex: true};
+
+//const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB";
+//const options = {useNewUrlParser: true, useCreateIndex: true};
 
 // Or using promises
-mongoose.connect(uri, options).then(
+//mongoose.connect(uri, options).then(
   /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
-  () => { console.log('Conectado a mongoDB') },
+ // () => { console.log('Conectado a mongoDB') },
   /** handle initial connection error */
-  err => { console.log(err) }
-);
+ // err => { console.log(err) }
+//);
 
 
 //mongoose.connect(
