@@ -6,15 +6,26 @@ import path from 'path';
 const app = express();
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb';
-const options = {useNewUrlParser: true, useCreateIndex: true};
+const query =
+  "mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb";
+
+// Mongo Connection
+const db = query;
+mongoose.Promise = global.Promise;
+
+
+//const uri = 'mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb';
+//const options = {useNewUrlParser: true, useCreateIndex: true};
 
 // Or using promises
-mongoose.connect(uri, options).then(
-  /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
-  () => { console.log('Conectado a DB') },
-  /** handle initial connection error */
-  err => { console.log(err) }
+mongoose.connect(
+  db,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (error) {
+    if (error) {
+      console.log("Error!" + error);
+    }
+  }
 );
 
 
