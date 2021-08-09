@@ -17,8 +17,7 @@ const db = query;
 //mongoose.Promise = global.Promise;
 
 
-const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB"+
-"retryWrites=true&w=majority"
+const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB";
 const options = {useNewUrlParser: true, useCreateIndex: true};
 
 // Or using promises
