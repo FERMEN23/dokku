@@ -14,26 +14,34 @@ const query ="mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-P
 
 // Mongo Connection
 const db = query;
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 
 
-//const uri = 'mongodb://127.0.0.1:27017/public_database?authSource=public_database&gssapiServiceName=mongodb';
-//const options = {useNewUrlParser: true, useCreateIndex: true};
+const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:20012/ProjectDB"+
+"retryWrites=true&w=majority"
+const options = {useNewUrlParser: true, useCreateIndex: true};
 
 // Or using promises
-mongoose.connect(
-  db,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function (error) {
-    if (error) {
-      console.log("Error!" + error);
-    }
-    else{
-      console.log("Conectado a la base de MongoDb")
-    }
-  }
+mongoose.connect(uri, options).then(
+  /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
+  () => { console.log('Conectado a mongoDB') },
+  /** handle initial connection error */
+  err => { console.log(err) }
 );
-app.use('/api', require('./rutas/productos'));
+
+
+//mongoose.connect(
+ // db,
+ // { useNewUrlParser: true, useUnifiedTopology: true },
+ // function (error) {
+  //  if (error) {
+   //   console.log("Error!" + error);
+   // }
+   // else{
+    //  console.log("Conectado a la base de MongoDb")
+    //}
+ // }
+//);
 
 // Middleware
 app.use(morgan('tiny'));
@@ -41,7 +49,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/api', require('./rutas/productos'));
 // Rutas
 app.get('/', (req, res) => {
   res.send('Hello World!');

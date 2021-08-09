@@ -1,35 +1,78 @@
 import express from 'express';
 const router = express.Router();
 
-// importar el modelo nota
-import products from '../models/productos';
+//Importar el modelo categoria
 
-// Agregar una nota
-router.post('/addProduct', async(req, res) => {
-  const body = req.body;  
-  try {
-    const ProductDB = await products.create(body);
-    res.status(200).json(ProductDB); 
-  } catch (error) {
-    return res.status(500).json({
-      mensaje: 'Ocurrio un error',
-      error
-    })
-  }
+import Products from '../models/productos'
+
+//Agregar una nota
+router.post('/nuevo-producto',async(req,res)=>{
+    const body=req.body;
+    try {
+        const productoDB= await Products.create(body);
+        res.status(200).json(productoDB);
+    } catch (error) {
+
+        return res.status(500).json({
+            mensaje:'Ocurrio un error',
+            error
+        });
+    }
+
+
 });
 
-// Get con todos los documentos
-router.get('/Productos', async(req, res) => {
+//Get con parametros
+router.get('/producto/:id',async(req,res)=>{
+    const _id=req.params.id;
     try {
-      const notaDb = await products.find();
-      res.json(notaDb);
-    } catch (error) {
-      return res.status(400).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
+        const categoriaDB = await Products.findOne({_id});
+        res.json(categoriaDB);
 
-// Exportamos la configuración de express app
-module.exports = router
+    } catch (error) {
+        return res.status(400).json({
+            mensaje:'Ocurrio un error',
+            error
+        })
+    }
+
+});
+
+//Get con todos los documentos
+router.get('/productos',async(req,res)=>{
+    try {
+        const productosDB = await Products.find();
+        res.json(productosDB);
+    } catch (error) {
+        return res.status(400).json({
+            mensaje:'Ocurrio un error',
+            error
+        })
+    }
+});
+
+
+//Ruta delete
+router.delete('/productos/:id',async(req,res)=>{
+    const _id=req.params.id;
+    try {
+        
+        const productoDB = await Products.findByIdAndDelete({_id});
+        if(!productoDB){
+            return res.status(400).json({
+                mensaje:'No se encontró el id indicado',
+                error
+            })    
+        }
+        res.json(productoDB);
+
+    } catch (error) {
+        return res.status(400).json({
+            mensaje:'Ocurrio un error',
+            error
+        })
+    }
+});
+
+
+module.exports = router;
