@@ -7,7 +7,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 const query ="mongodb://publicDB:713975d208bbae69c2f777673539be73"+
-"@localhost:20017/publicDB"+
+"@localhost:20017/publicDB?"+
 "retryWrites=true&w=majority";
 
 
