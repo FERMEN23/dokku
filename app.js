@@ -27,7 +27,7 @@ mongoose.connect(
     }
   }
 );
-
+app.use('/api', require('./routes/productos'));
 
 // Middleware
 app.use(morgan('tiny'));
