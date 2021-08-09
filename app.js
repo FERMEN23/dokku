@@ -6,8 +6,8 @@ import path from 'path';
 const app = express();
 const mongoose = require('mongoose');
 
-const query ="mongodb://public-database:599933f56cdfa4f482f3475c5c15389b" +
-"@127.0.0.1:20017/public_database?" +
+const query ="mongodb://publicDB:713975d208bbae69c2f777673539be73"+
+"@localhost:20017/publicDB"+
 "retryWrites=true&w=majority";
 
 
