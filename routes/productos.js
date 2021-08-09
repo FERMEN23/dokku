@@ -16,6 +16,32 @@ router.post('/nuevo', async(req, res) => {
     }
   });
 
+  router.get('/producto/:id', async(req, res) => {
+    const _id = req.params.id;
+    try {
+      const notaDB = await productos.findOne({_id});
+      res.json(notaDB);
+    } catch (error) {
+      return res.status(400).json({
+        mensaje: 'Ocurrio un error',
+        error
+      })
+    }
+  });
+  
+  // Get con todos los documentos
+  router.get('/producto', async(req, res) => {
+    try {
+      const notaDb = await productos.find();
+      res.json(notaDb);
+    } catch (error) {
+      return res.status(400).json({
+        mensaje: 'Ocurrio un error',
+        error
+      })
+    }
+  });
+
 
 
 

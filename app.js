@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const uri = "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58" +
 "@fernanda-Inspiron-15-3567:20012/ProjectDB?" +
 "retryWrites=true&w=majority";
-const options = {useNewUrlParser: true, useCreateIndex: true};
+const options = {useNewUrlParser: true, useCreateIndex: true ,useUnifiedTopology: true};
 
 // Or using promises
 mongoose.connect(uri, options).then(
