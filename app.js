@@ -8,8 +8,10 @@ const mongoose = require('mongoose');
 
 
 // Mongo URI
-const query ="mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58@dokku-mongo-ProjectDB:27017/ProjectDB";
-
+const query =
+  "mongodb://ProjectDB:319f674a65e8889a3fc484d90efb8f58" +
+  "@fernanda-Inspiron-15-3567:20012/ProjectDB?" +
+  "retryWrites=true&w=majority";
 // Mongo Connection
 const db = query;
 mongoose.Promise = global.Promise;
